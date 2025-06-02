@@ -8,17 +8,17 @@ public class BallControl : MonoBehaviour
     public float speed;
     public void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>(); //mengambil rigidbody component dari sebuah bole
-        Invoke("GoBall", 3); //memanggil function GoBall dlm 2 detik
+        rb2d = GetComponent<Rigidbody2D>(); 
+        Invoke("GoBall", 3); 
         
     }
     void GoBall()
     {
-        float rand = Random.Range(0, 2); //akan random nilai diantara 0-1
+        float rand = Random.Range(0, 2);
         if (rand < 1)
         {
-            rb2d.AddForce(new Vector2(20, -15).normalized*speed); //add force memberikan tenaga
-                                                 //liat doc add force disini https://docs.unity3d.com/ScriptReference/Rigidbody.AddForce.html
+            rb2d.AddForce(new Vector2(20, -15).normalized*speed); 
+                                                 
 
         }
         else
@@ -27,7 +27,7 @@ public class BallControl : MonoBehaviour
         }
     }
 
-    void ResetBall() //ini kita buat nilai transform jadi 0
+    void ResetBall() 
     {
         rb2d.velocity = Vector2.zero;
         transform.position = Vector2.zero;
@@ -35,7 +35,6 @@ public class BallControl : MonoBehaviour
 
     void RestartGame()
     {
-        //Debug.Log("Restart!");
         ResetBall();
         Invoke("GoBall", 1);
     }
@@ -43,20 +42,18 @@ public class BallControl : MonoBehaviour
     [SerializeField] private int wallCollisionCount;
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.collider.CompareTag( "Player")) //jika terkena player
+        if (coll.collider.CompareTag( "Player")) 
         {
-            //Debug.Log("King Punch!");
             rb2d.AddForce(new Vector2(20, -15).normalized*speed);
             wallCollisionCount = 0;
 
         }
-        else if (coll.gameObject.name == "wall") //jika terkena enemy
+        else if (coll.gameObject.name == "wall") 
         {
-            //Debug.Log("Pig Punch!");
             rb2d.AddForce(new Vector2(-20, -15).normalized*speed);
             wallCollisionCount = 0;
         }
-        else //jika terkena wall
+        else 
         {
             wallCollisionCount = wallCollisionCount + 1;
             Debug.Log("Wall Collision! = " + wallCollisionCount);

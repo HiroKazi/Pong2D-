@@ -16,7 +16,6 @@ public class PlayerControls : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         var vel = rb2d.velocity;
