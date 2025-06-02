@@ -6,7 +6,7 @@ public class BallControl : MonoBehaviour
 {
     private Rigidbody2D rb2d;
     public float speed;
-    void Start()
+    public void Start()
     {
         rb2d = GetComponent<Rigidbody2D>(); //mengambil rigidbody component dari sebuah bole
         Invoke("GoBall", 3); //memanggil function GoBall dlm 2 detik
